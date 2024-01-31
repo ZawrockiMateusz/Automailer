@@ -76,6 +76,9 @@
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.progressBar = new DevExpress.XtraEditors.ProgressBarControl();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmbClientEmail.Properties)).BeginInit();
@@ -118,10 +121,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.progressBar);
             this.layoutControl1.Controls.Add(this.cmbClientEmail);
             this.layoutControl1.Controls.Add(this.btnZamknij);
             this.layoutControl1.Controls.Add(this.btnSendEmails);
@@ -134,7 +140,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1017, 308, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(437, 447);
+            this.layoutControl1.Size = new System.Drawing.Size(437, 459);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -177,7 +183,7 @@
             // 
             // btnZamknij
             // 
-            this.btnZamknij.Location = new System.Drawing.Point(304, 413);
+            this.btnZamknij.Location = new System.Drawing.Point(304, 411);
             this.btnZamknij.Name = "btnZamknij";
             this.btnZamknij.Size = new System.Drawing.Size(121, 22);
             this.btnZamknij.StyleController = this.layoutControl1;
@@ -187,7 +193,7 @@
             // 
             // btnSendEmails
             // 
-            this.btnSendEmails.Location = new System.Drawing.Point(12, 413);
+            this.btnSendEmails.Location = new System.Drawing.Point(12, 411);
             this.btnSendEmails.Name = "btnSendEmails";
             this.btnSendEmails.Size = new System.Drawing.Size(288, 22);
             this.btnSendEmails.StyleController = this.layoutControl1;
@@ -200,7 +206,7 @@
             this.grpAdvanced.Controls.Add(this.layoutControl2);
             this.grpAdvanced.Location = new System.Drawing.Point(12, 108);
             this.grpAdvanced.Name = "grpAdvanced";
-            this.grpAdvanced.Size = new System.Drawing.Size(413, 301);
+            this.grpAdvanced.Size = new System.Drawing.Size(413, 299);
             this.grpAdvanced.TabIndex = 8;
             this.grpAdvanced.Text = "Zaawansowane";
             // 
@@ -218,7 +224,7 @@
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(785, 95, 650, 400);
             this.layoutControl2.Root = this.layoutControlGroup1;
-            this.layoutControl2.Size = new System.Drawing.Size(409, 276);
+            this.layoutControl2.Size = new System.Drawing.Size(409, 274);
             this.layoutControl2.TabIndex = 0;
             this.layoutControl2.Text = "layoutControl2";
             // 
@@ -267,7 +273,7 @@
             this.gcExcelCellsMap.Name = "gcExcelCellsMap";
             this.gcExcelCellsMap.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1});
-            this.gcExcelCellsMap.Size = new System.Drawing.Size(358, 187);
+            this.gcExcelCellsMap.Size = new System.Drawing.Size(358, 185);
             this.gcExcelCellsMap.TabIndex = 7;
             this.gcExcelCellsMap.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvExcelCellsMap});
@@ -389,7 +395,7 @@
             this.emptySpaceItem1,
             this.emptySpaceItem2});
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(409, 276);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(409, 274);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem5
@@ -406,7 +412,7 @@
             this.layoutControlItem11.Control = this.gcExcelCellsMap;
             this.layoutControlItem11.Location = new System.Drawing.Point(0, 49);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(362, 207);
+            this.layoutControlItem11.Size = new System.Drawing.Size(362, 205);
             this.layoutControlItem11.Text = "Parametry:";
             this.layoutControlItem11.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem11.TextSize = new System.Drawing.Size(59, 13);
@@ -485,7 +491,7 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(362, 119);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(27, 137);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(27, 135);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // btnExcelPath
@@ -527,9 +533,10 @@
             this.layoutControlItem4,
             this.layoutControlItem7,
             this.layoutControlItem8,
-            this.layoutControlItem14});
+            this.layoutControlItem14,
+            this.layoutControlItem17});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(437, 447);
+            this.Root.Size = new System.Drawing.Size(437, 459);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem2
@@ -564,14 +571,14 @@
             this.layoutControlItem4.Control = this.grpAdvanced;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(417, 305);
+            this.layoutControlItem4.Size = new System.Drawing.Size(417, 303);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.btnSendEmails;
-            this.layoutControlItem7.Location = new System.Drawing.Point(0, 401);
+            this.layoutControlItem7.Location = new System.Drawing.Point(0, 399);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(292, 26);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
@@ -580,7 +587,7 @@
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.btnZamknij;
-            this.layoutControlItem8.Location = new System.Drawing.Point(292, 401);
+            this.layoutControlItem8.Location = new System.Drawing.Point(292, 399);
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(125, 26);
             this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
@@ -643,15 +650,39 @@
             this.layoutControlItem10.Text = "Komórka z emailem Klienta:";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(50, 20);
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(12, 437);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(413, 10);
+            this.progressBar.StyleController = this.layoutControl1;
+            this.progressBar.TabIndex = 12;
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.progressBar;
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 425);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(417, 14);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem17.TextVisible = false;
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 447);
+            this.ClientSize = new System.Drawing.Size(437, 459);
             this.Controls.Add(this.layoutControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(453, 486);
-            this.MinimumSize = new System.Drawing.Size(453, 486);
+            this.MaximumSize = new System.Drawing.Size(453, 498);
+            this.MinimumSize = new System.Drawing.Size(453, 498);
             this.Name = "MainView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Automailer";
@@ -698,6 +729,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -750,5 +783,8 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraGrid.Columns.GridColumn colType;
+        private DevExpress.XtraEditors.ProgressBarControl progressBar;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }

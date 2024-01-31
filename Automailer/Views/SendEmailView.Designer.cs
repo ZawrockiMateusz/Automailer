@@ -34,7 +34,7 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSend = new DevExpress.XtraEditors.SimpleButton();
             this.txtEmailTitle = new DevExpress.XtraEditors.TextEdit();
-            this.rTxtEmailBodt = new DevExpress.XtraRichEdit.RichEditControl();
+            this.rTxtEmailBody = new DevExpress.XtraRichEdit.RichEditControl();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -45,6 +45,9 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnInsertParam = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmailTitle.Properties)).BeginInit();
@@ -54,17 +57,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.btnInsertParam);
             this.layoutControl1.Controls.Add(this.btnCancel);
             this.layoutControl1.Controls.Add(this.btnSend);
             this.layoutControl1.Controls.Add(this.txtEmailTitle);
-            this.layoutControl1.Controls.Add(this.rTxtEmailBodt);
+            this.layoutControl1.Controls.Add(this.rTxtEmailBody);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1329, 325, 650, 400);
             this.layoutControl1.Root = this.Root;
             this.layoutControl1.Size = new System.Drawing.Size(931, 504);
             this.layoutControl1.TabIndex = 0;
@@ -72,9 +79,9 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(655, 470);
+            this.btnCancel.Location = new System.Drawing.Point(704, 470);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(264, 22);
+            this.btnCancel.Size = new System.Drawing.Size(215, 22);
             this.btnCancel.StyleController = this.layoutControl1;
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Anuluj";
@@ -84,7 +91,7 @@
             // 
             this.btnSend.Location = new System.Drawing.Point(12, 470);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(639, 22);
+            this.btnSend.Size = new System.Drawing.Size(314, 22);
             this.btnSend.StyleController = this.layoutControl1;
             this.btnSend.TabIndex = 6;
             this.btnSend.Text = "Wyślij";
@@ -98,13 +105,13 @@
             this.txtEmailTitle.StyleController = this.layoutControl1;
             this.txtEmailTitle.TabIndex = 5;
             // 
-            // rTxtEmailBodt
+            // rTxtEmailBody
             // 
-            this.rTxtEmailBodt.Location = new System.Drawing.Point(12, 68);
-            this.rTxtEmailBodt.MenuManager = this.barManager1;
-            this.rTxtEmailBodt.Name = "rTxtEmailBodt";
-            this.rTxtEmailBodt.Size = new System.Drawing.Size(907, 398);
-            this.rTxtEmailBodt.TabIndex = 4;
+            this.rTxtEmailBody.Location = new System.Drawing.Point(12, 68);
+            this.rTxtEmailBody.MenuManager = this.barManager1;
+            this.rTxtEmailBody.Name = "rTxtEmailBody";
+            this.rTxtEmailBody.Size = new System.Drawing.Size(907, 398);
+            this.rTxtEmailBody.TabIndex = 4;
             // 
             // barManager1
             // 
@@ -154,14 +161,16 @@
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.layoutControlItem3,
-            this.layoutControlItem4});
+            this.layoutControlItem4,
+            this.emptySpaceItem1,
+            this.layoutControlItem5});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(931, 504);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
             // 
-            this.layoutControlItem1.Control = this.rTxtEmailBodt;
+            this.layoutControlItem1.Control = this.rTxtEmailBody;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 40);
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(911, 418);
@@ -184,18 +193,50 @@
             this.layoutControlItem3.Control = this.btnSend;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 458);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(643, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(318, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnCancel;
-            this.layoutControlItem4.Location = new System.Drawing.Point(643, 458);
+            this.layoutControlItem4.Location = new System.Drawing.Point(692, 458);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(268, 26);
+            this.layoutControlItem4.Size = new System.Drawing.Size(219, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
+            // 
+            // btnInsertParam
+            // 
+            this.btnInsertParam.Location = new System.Drawing.Point(330, 470);
+            this.btnInsertParam.Name = "btnInsertParam";
+            this.btnInsertParam.Size = new System.Drawing.Size(215, 22);
+            this.btnInsertParam.StyleController = this.layoutControl1;
+            this.btnInsertParam.TabIndex = 8;
+            this.btnInsertParam.Text = "Dodaj parametr";
+            this.btnInsertParam.Click += new System.EventHandler(this.btnInsertParam_Click);
+            // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.btnInsertParam;
+            this.layoutControlItem5.Location = new System.Drawing.Point(318, 458);
+            this.layoutControlItem5.MinSize = new System.Drawing.Size(78, 26);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(219, 26);
+            this.layoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(537, 458);
+            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(155, 26);
+            this.emptySpaceItem1.MinSize = new System.Drawing.Size(100, 26);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(155, 26);
+            this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // SendEmailView
             // 
@@ -220,6 +261,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,7 +274,7 @@
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraEditors.SimpleButton btnSend;
         private DevExpress.XtraEditors.TextEdit txtEmailTitle;
-        private DevExpress.XtraRichEdit.RichEditControl rTxtEmailBodt;
+        private DevExpress.XtraRichEdit.RichEditControl rTxtEmailBody;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
@@ -242,5 +285,8 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private DevExpress.XtraEditors.SimpleButton btnInsertParam;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
     }
 }

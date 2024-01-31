@@ -93,6 +93,12 @@
     <Compile Include="Views\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SelectParameterView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SelectParameterView.Designer.cs">
+      <DependentUpon>SelectParameterView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SendEmailView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </Compile>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SelectParameterView.resx">
+      <DependentUpon>SelectParameterView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SendEmailView.resx">
       <DependentUpon>SendEmailView.cs</DependentUpon>

@@ -92,6 +92,11 @@ namespace Automailer.Views
 
         private void MainView_FormClosing(object sender, FormClosingEventArgs e)
         {
+            saveConfig();
+        }
+
+        private void saveConfig()
+        {
             config.LatestExcelFilePath = btnExcelPath.Text;
             config.EmailLogin = txtEmailLogin.Text;
             config.ClientEmailColumn = cmbClientEmail.Text;
@@ -106,88 +111,21 @@ namespace Automailer.Views
 
         private void btnSendEmails_Click(object sender, EventArgs e)
         {
-            SendEmailView sendEmailView = new SendEmailView();
-            if(sendEmailView.ShowDialog() == DialogResult.OK)
+            SendEmailView sendEmailView = new SendEmailView(config);
+            if (sendEmailView.ShowDialog() == DialogResult.OK)
             {
-                //configure mail properties
-                EmailContent emailContent = new EmailContent
-                {
-                    Body = sendEmailView.EmailBody,
-                    Title = sendEmailView.EmailTitle
-                };
-                
-                string excelPath = btnExcelPath.Text;
-
-                string email = txtEmailLogin.Text;
-                string password = txtEmailPassword.Text;
-
-                SmtpClient client = new SmtpClient(txtSMTPClient.Text)
-                {
-                    Port = 587,
-                    Credentials = new NetworkCredential(email, password),
-                    EnableSsl = chkEnableSSL.Checked,
-                };
-
-                invalidEmails = new List<string>();
-                //Open excel file
-                using (var package = new ExcelPackage(new FileInfo(excelPath)))
-                {
-                    int startRowIndex = chkSkipHeader.Checked ? 2 : 1;
-                    var worksheet = package.Workbook.Worksheets[0];
-
-                    for (int row = startRowIndex; row <= worksheet.Dimension.End.Row; row++)
-                    {
-                        string localBody = emailContent.Body;
-                        List<Attachment> attachments = new List<Attachment>();
-
-                        foreach (ExcelParameterMap excelParam in config.ExcelParametersMap.Where(epm
-                            => epm.ParamType == ParameterType.Default
-                            || epm.ParamType == ParameterType.Text))
-                        {
-                            localBody = localBody.Replace(
-                                $"<<{excelParam.Name}>>",
-                                worksheet.Cells[excelParam.Cell + row.ToString()].Value.ToString());
-                        }
-                        foreach (ExcelParameterMap excelParam in config.ExcelParametersMap.Where(epm
-                             => epm.ParamType == ParameterType.Image))
-                        {
-                            attachments.Add(new Attachment(excelParam.Name, MediaTypeNames.Image.Jpeg)
-                            {
-                                ContentId = excelParam.Name
-                            });
-                        }
-
-                        string from = txtEmailLogin.Text;
-                        string to = worksheet.Cells[cmbClientEmail.Text + row.ToString()].Value.ToString();
-                        try
-                        {
-                            MailMessageController.SendMailMessage(
-                                client,
-                                from,
-                                to,
-                                emailContent.Title,
-                                localBody,
-                                attachments);
-                        }
-                        catch
-                        {
-                            invalidEmails.Add(to);
-                        }
-                    }
-                }
-                MessageBox.Show("Wiadomości zostały wysłane do adresatów.", 
-                    "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (invalidEmails != null && invalidEmails.Count > 0)
-                {
-                    MessageBox.Show($"Nie udało się wysłać następującej liczby wiadomości: {invalidEmails.Count}.", 
-                        "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                KeyValuePair<string, string> keyValuePair = 
+                    new KeyValuePair<string, string>(
+                        sendEmailView.EmailTitle, 
+                        sendEmailView.EmailBody);
+                backgroundWorker.RunWorkerAsync(keyValuePair);
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             config.ExcelParametersMap.Add(new ExcelParameterMap());
+            saveConfig();
             gcExcelCellsMap.RefreshDataSource();
         }
 
@@ -198,5 +136,95 @@ namespace Automailer.Views
             gcExcelCellsMap.RefreshDataSource();
         }
 
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            KeyValuePair<string, string> keyValuePair = (KeyValuePair<string, string>)e.Argument;
+            
+            //configure mail properties
+            EmailContent emailContent = new EmailContent
+            {
+                Title = keyValuePair.Key,
+                Body = keyValuePair.Value
+            };
+
+            string excelPath = btnExcelPath.Text;
+
+            string email = txtEmailLogin.Text;
+            string password = txtEmailPassword.Text;
+
+            SmtpClient client = new SmtpClient(txtSMTPClient.Text)
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(email, password),
+                EnableSsl = chkEnableSSL.Checked,
+            };
+
+            invalidEmails = new List<string>();
+            //Open excel file
+            using (var package = new ExcelPackage(new FileInfo(excelPath)))
+            {
+                int startRowIndex = chkSkipHeader.Checked ? 2 : 1;
+                var worksheet = package.Workbook.Worksheets[0];
+
+                for (int row = startRowIndex; row <= worksheet.Dimension.End.Row; row++)
+                {
+                    string localBody = emailContent.Body;
+                    List<Attachment> attachments = new List<Attachment>();
+
+                    foreach (ExcelParameterMap excelParam in config.ExcelParametersMap.Where(epm
+                        => epm.ParamType == ParameterType.Default
+                        || epm.ParamType == ParameterType.Text))
+                    {
+                        localBody = localBody.Replace(
+                            $"<<{excelParam.Name}>>",
+                            worksheet.Cells[excelParam.Cell + row.ToString()].Value?.ToString() ?? String.Empty);
+                    }
+                    foreach (ExcelParameterMap excelParam in config.ExcelParametersMap.Where(epm
+                         => epm.ParamType == ParameterType.Image))
+                    {
+                        attachments.Add(new Attachment(excelParam.Name, MediaTypeNames.Image.Jpeg)
+                        {
+                            ContentId = excelParam.Name
+                        });
+                    }
+
+                    string from = txtEmailLogin.Text;
+                    string to = worksheet.Cells[cmbClientEmail.Text + row.ToString()].Value?.ToString() ?? String.Empty;
+                    try
+                    {
+                        MailMessageController.SendMailMessage(
+                            client,
+                            from,
+                            to,
+                            emailContent.Title,
+                            localBody,
+                            attachments);
+                    }
+                    catch
+                    {
+                        invalidEmails.Add(to);
+                    }
+                    int progressPercentage = (int)(((double)row / worksheet.Dimension.End.Row) * 100);
+                    backgroundWorker.ReportProgress(progressPercentage);
+                }
+            }
+        }
+
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar.EditValue = e.ProgressPercentage;
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Wiadomości zostały wysłane do adresatów.",
+                    "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (invalidEmails != null && invalidEmails.Count > 0)
+            {
+                MessageBox.Show($"Nie udało się wysłać następującej liczby wiadomości: {invalidEmails.Count}.",
+                    "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            progressBar.EditValue = 0;
+        }
     }
 }
