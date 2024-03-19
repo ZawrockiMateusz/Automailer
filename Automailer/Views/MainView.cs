@@ -111,13 +111,13 @@ namespace Automailer.Views
 
         private void btnSendEmails_Click(object sender, EventArgs e)
         {
-            SendEmailView sendEmailView = new SendEmailView(config);
-            if (sendEmailView.ShowDialog() == DialogResult.OK)
+            PrepareEmailView prepareEmailView = new PrepareEmailView(config);
+            if (prepareEmailView.ShowDialog() == DialogResult.OK)
             {
                 KeyValuePair<string, string> keyValuePair = 
                     new KeyValuePair<string, string>(
-                        sendEmailView.EmailTitle, 
-                        sendEmailView.EmailBody);
+                        prepareEmailView.EmailTitle,
+                        prepareEmailView.EmailBody);
                 backgroundWorker.RunWorkerAsync(keyValuePair);
             }
         }
@@ -169,12 +169,17 @@ namespace Automailer.Views
                 for (int row = startRowIndex; row <= worksheet.Dimension.End.Row; row++)
                 {
                     string localBody = emailContent.Body;
+                    string localTitle = emailContent.Title;
                     List<Attachment> attachments = new List<Attachment>();
 
                     foreach (ExcelParameterMap excelParam in config.ExcelParametersMap.Where(epm
                         => epm.ParamType == ParameterType.Default
                         || epm.ParamType == ParameterType.Text))
                     {
+                        localTitle = localTitle.Replace(
+                            $"<<{excelParam.Name}>>",
+                            worksheet.Cells[excelParam.Cell + row.ToString()].Value?.ToString() ?? String.Empty);
+
                         localBody = localBody.Replace(
                             $"<<{excelParam.Name}>>",
                             worksheet.Cells[excelParam.Cell + row.ToString()].Value?.ToString() ?? String.Empty);
@@ -196,11 +201,11 @@ namespace Automailer.Views
                             client,
                             from,
                             to,
-                            emailContent.Title,
+                            localTitle,
                             localBody,
                             attachments);
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         invalidEmails.Add(to);
                     }
@@ -225,6 +230,11 @@ namespace Automailer.Views
                     "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             progressBar.EditValue = 0;
+        }
+
+        private void btnExcelPath_TextChanged(object sender, EventArgs e)
+        {
+            config.LatestExcelFilePath = btnExcelPath.Text;
         }
     }
 }

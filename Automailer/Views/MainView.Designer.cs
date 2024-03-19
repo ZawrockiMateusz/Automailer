@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.progressBar = new DevExpress.XtraEditors.ProgressBarControl();
             this.cmbClientEmail = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnZamknij = new DevExpress.XtraEditors.SimpleButton();
             this.btnSendEmails = new DevExpress.XtraEditors.SimpleButton();
@@ -71,16 +72,16 @@
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.cmbNameCell = new DevExpress.XtraEditors.ComboBoxEdit();
             this.cmbClientEmailCell = new DevExpress.XtraEditors.ComboBoxEdit();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.progressBar = new DevExpress.XtraEditors.ProgressBarControl();
-            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.progressBar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbClientEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpAdvanced)).BeginInit();
             this.grpAdvanced.SuspendLayout();
@@ -116,13 +117,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameCell.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbClientEmailCell.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.progressBar.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -143,6 +143,14 @@
             this.layoutControl1.Size = new System.Drawing.Size(437, 459);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(12, 437);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(413, 10);
+            this.progressBar.StyleController = this.layoutControl1;
+            this.progressBar.TabIndex = 12;
             // 
             // cmbClientEmail
             // 
@@ -504,6 +512,7 @@
             this.btnExcelPath.StyleController = this.layoutControl1;
             this.btnExcelPath.TabIndex = 7;
             this.btnExcelPath.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnExcelPath_ButtonClick);
+            this.btnExcelPath.TextChanged += new System.EventHandler(this.btnExcelPath_TextChanged);
             // 
             // txtEmailPassword
             // 
@@ -602,6 +611,15 @@
             this.layoutControlItem14.Text = "Kolumna z Emailem Klienta:";
             this.layoutControlItem14.TextSize = new System.Drawing.Size(128, 13);
             // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.progressBar;
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 425);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(417, 14);
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem17.TextVisible = false;
+            // 
             // cmbNameCell
             // 
             this.cmbNameCell.Location = new System.Drawing.Point(153, 12);
@@ -650,23 +668,6 @@
             this.layoutControlItem10.Text = "Komórka z emailem Klienta:";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(50, 20);
             // 
-            // progressBar
-            // 
-            this.progressBar.Location = new System.Drawing.Point(12, 437);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(413, 10);
-            this.progressBar.StyleController = this.layoutControl1;
-            this.progressBar.TabIndex = 12;
-            // 
-            // layoutControlItem17
-            // 
-            this.layoutControlItem17.Control = this.progressBar;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 425);
-            this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(417, 14);
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem17.TextVisible = false;
-            // 
             // backgroundWorker
             // 
             this.backgroundWorker.WorkerReportsProgress = true;
@@ -689,6 +690,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainView_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.progressBar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbClientEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpAdvanced)).EndInit();
             this.grpAdvanced.ResumeLayout(false);
@@ -724,13 +726,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbNameCell.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbClientEmailCell.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.progressBar.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             this.ResumeLayout(false);
 
         }

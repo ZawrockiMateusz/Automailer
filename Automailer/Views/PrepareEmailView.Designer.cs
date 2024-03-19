@@ -1,6 +1,6 @@
 ﻿namespace Automailer.Views
 {
-    partial class SendEmailView
+    partial class PrepareEmailView
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SendEmailView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrepareEmailView));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnInsertParam = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSend = new DevExpress.XtraEditors.SimpleButton();
             this.txtEmailTitle = new DevExpress.XtraEditors.TextEdit();
@@ -45,9 +46,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnInsertParam = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmailTitle.Properties)).BeginInit();
@@ -57,8 +57,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -76,6 +76,16 @@
             this.layoutControl1.Size = new System.Drawing.Size(931, 504);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // btnInsertParam
+            // 
+            this.btnInsertParam.Location = new System.Drawing.Point(330, 470);
+            this.btnInsertParam.Name = "btnInsertParam";
+            this.btnInsertParam.Size = new System.Drawing.Size(215, 22);
+            this.btnInsertParam.StyleController = this.layoutControl1;
+            this.btnInsertParam.TabIndex = 8;
+            this.btnInsertParam.Text = "Dodaj parametr";
+            this.btnInsertParam.Click += new System.EventHandler(this.btnInsertParam_Click);
             // 
             // btnCancel
             // 
@@ -206,15 +216,16 @@
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
-            // btnInsertParam
+            // emptySpaceItem1
             // 
-            this.btnInsertParam.Location = new System.Drawing.Point(330, 470);
-            this.btnInsertParam.Name = "btnInsertParam";
-            this.btnInsertParam.Size = new System.Drawing.Size(215, 22);
-            this.btnInsertParam.StyleController = this.layoutControl1;
-            this.btnInsertParam.TabIndex = 8;
-            this.btnInsertParam.Text = "Dodaj parametr";
-            this.btnInsertParam.Click += new System.EventHandler(this.btnInsertParam_Click);
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(537, 458);
+            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(155, 26);
+            this.emptySpaceItem1.MinSize = new System.Drawing.Size(100, 26);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(155, 26);
+            this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
             // 
@@ -227,18 +238,7 @@
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(537, 458);
-            this.emptySpaceItem1.MaxSize = new System.Drawing.Size(155, 26);
-            this.emptySpaceItem1.MinSize = new System.Drawing.Size(100, 26);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(155, 26);
-            this.emptySpaceItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // SendEmailView
+            // PrepareEmailView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -249,7 +249,7 @@
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "SendEmailView";
+            this.Name = "PrepareEmailView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Treść wiadomości";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
@@ -261,8 +261,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

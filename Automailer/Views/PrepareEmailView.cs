@@ -12,15 +12,17 @@ using System.Windows.Forms;
 
 namespace Automailer.Views
 {
-    public partial class SendEmailView : Form
+    public partial class PrepareEmailView : Form
     {
         public string EmailTitle { get; set; }
         public string EmailBody { get; set; }
         private Configuration _config;
-        public SendEmailView(Configuration config)
+        public PrepareEmailView(Configuration config)
         {
             InitializeComponent();
             _config = config;
+
+            this.Text = $"Treść wiadomości | {config.LatestExcelFilePath}";
         }
 
         private void btnSend_Click(object sender, EventArgs e)

@@ -99,11 +99,11 @@
     <Compile Include="Views\SelectParameterView.Designer.cs">
       <DependentUpon>SelectParameterView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\SendEmailView.cs">
+    <Compile Include="Views\PrepareEmailView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\SendEmailView.Designer.cs">
-      <DependentUpon>SendEmailView.cs</DependentUpon>
+    <Compile Include="Views\PrepareEmailView.Designer.cs">
+      <DependentUpon>PrepareEmailView.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -121,8 +121,8 @@
     <EmbeddedResource Include="Views\SelectParameterView.resx">
       <DependentUpon>SelectParameterView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\SendEmailView.resx">
-      <DependentUpon>SendEmailView.cs</DependentUpon>
+    <EmbeddedResource Include="Views\PrepareEmailView.resx">
+      <DependentUpon>PrepareEmailView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Automailer.Models.ExcelParameterMap.datasource" />
