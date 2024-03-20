@@ -1,4 +1,5 @@
 ﻿using Automailer.Models;
+using DevExpress.XtraLayout;
 using DevExpress.XtraRichEdit.API.Native;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,25 @@ namespace Automailer.Views
         public string EmailTitle { get; set; }
         public string EmailBody { get; set; }
         private Configuration _config;
-        public PrepareEmailView(Configuration config)
+        public PrepareEmailView(Configuration config, List<Recipient> recipients)
         {
             InitializeComponent();
             _config = config;
 
-            this.Text = $"Treść wiadomości | {config.LatestExcelFilePath}";
+            initializeGvRecipients(recipients);
+
+            this.Text = $"Treść wiadomości | {_config.LatestExcelFilePath}";
+        }
+
+        private void initializeGvRecipients(List<Recipient> recipients)
+        {
+            gcRecipients.DataSource = recipients;
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(
-                "Czy na pewno chcesz wysłać wiadomość?", "Uwaga!", 
+                $"Czy na pewno chcesz wysłać wiadomość?", "Uwaga!", 
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 EmailTitle = txtEmailTitle.Text;

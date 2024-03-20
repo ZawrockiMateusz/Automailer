@@ -109,9 +109,14 @@ namespace Automailer.Views
                 (config, configFilePath);
         }
 
-        private void btnSendEmails_Click(object sender, EventArgs e)
+        private void btnPrepareEmails_Click(object sender, EventArgs e)
         {
-            PrepareEmailView prepareEmailView = new PrepareEmailView(config);
+            string excelPath = btnExcelPath.Text;
+            bool skipHeader = chkSkipHeader.Checked;
+            string emailColumn = cmbClientEmail.Text;
+
+            PrepareEmailView prepareEmailView = new PrepareEmailView
+                (config, ExcelImportController.downloadRecipients(excelPath, skipHeader, emailColumn));
             if (prepareEmailView.ShowDialog() == DialogResult.OK)
             {
                 KeyValuePair<string, string> keyValuePair = 
@@ -154,7 +159,7 @@ namespace Automailer.Views
 
             SmtpClient client = new SmtpClient(txtSMTPClient.Text)
             {
-                Port = 587,
+                Port = config.SMTP_Port,
                 Credentials = new NetworkCredential(email, password),
                 EnableSsl = chkEnableSSL.Checked,
             };
@@ -168,6 +173,10 @@ namespace Automailer.Views
 
                 for (int row = startRowIndex; row <= worksheet.Dimension.End.Row; row++)
                 {
+                    string from = txtEmailLogin.Text;
+                    string to = worksheet.Cells[cmbClientEmail.Text + row.ToString()].Value?.ToString() ?? String.Empty;
+                    if (String.IsNullOrEmpty(to)) continue;
+
                     string localBody = emailContent.Body;
                     string localTitle = emailContent.Title;
                     List<Attachment> attachments = new List<Attachment>();
@@ -193,8 +202,6 @@ namespace Automailer.Views
                         });
                     }
 
-                    string from = txtEmailLogin.Text;
-                    string to = worksheet.Cells[cmbClientEmail.Text + row.ToString()].Value?.ToString() ?? String.Empty;
                     try
                     {
                         MailMessageController.SendMailMessage(

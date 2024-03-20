@@ -81,10 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\ExcelImportController.cs" />
     <Compile Include="Controllers\MailMessageController.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\EmailContent.cs" />
     <Compile Include="Models\ExcelParameterMap.cs" />
+    <Compile Include="Models\Recipient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\MainView.cs">
@@ -126,6 +128,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Automailer.Models.ExcelParameterMap.datasource" />
+    <None Include="Properties\DataSources\Automailer.Models.Recipient.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
