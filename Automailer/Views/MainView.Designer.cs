@@ -188,6 +188,7 @@
             this.cmbClientEmail.Size = new System.Drawing.Size(271, 20);
             this.cmbClientEmail.StyleController = this.layoutControl1;
             this.cmbClientEmail.TabIndex = 11;
+            this.cmbClientEmail.ToolTip = "Kolumna z Emailem Odbiorcy";
             // 
             // btnZamknij
             // 
@@ -197,6 +198,7 @@
             this.btnZamknij.StyleController = this.layoutControl1;
             this.btnZamknij.TabIndex = 10;
             this.btnZamknij.Text = "Zamknij";
+            this.btnZamknij.ToolTip = "Zamknij program";
             this.btnZamknij.Click += new System.EventHandler(this.btnZamknij_Click);
             // 
             // btnPrepareEmails
@@ -207,6 +209,7 @@
             this.btnPrepareEmails.StyleController = this.layoutControl1;
             this.btnPrepareEmails.TabIndex = 9;
             this.btnPrepareEmails.Text = "Przygotuj wiadomości Email";
+            this.btnPrepareEmails.ToolTip = "Otwórz ekran pozwalający na przygotowanie wiadomości Email";
             this.btnPrepareEmails.Click += new System.EventHandler(this.btnPrepareEmails_Click);
             // 
             // grpAdvanced
@@ -244,6 +247,7 @@
             this.btnRemove.StyleController = this.layoutControl2;
             this.btnRemove.TabIndex = 11;
             this.btnRemove.Text = "-";
+            this.btnRemove.ToolTip = "Usuń parametr";
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
@@ -254,6 +258,7 @@
             this.btnAdd.StyleController = this.layoutControl2;
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "+";
+            this.btnAdd.ToolTip = "Dodaj parametr";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtSMTPClient
@@ -511,6 +516,7 @@
             this.btnExcelPath.Size = new System.Drawing.Size(271, 20);
             this.btnExcelPath.StyleController = this.layoutControl1;
             this.btnExcelPath.TabIndex = 7;
+            this.btnExcelPath.ToolTip = "Ścieżka fizyczna do pliku z listą Odbiorców";
             this.btnExcelPath.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnExcelPath_ButtonClick);
             this.btnExcelPath.TextChanged += new System.EventHandler(this.btnExcelPath_TextChanged);
             // 
@@ -522,6 +528,7 @@
             this.txtEmailPassword.Size = new System.Drawing.Size(271, 20);
             this.txtEmailPassword.StyleController = this.layoutControl1;
             this.txtEmailPassword.TabIndex = 6;
+            this.txtEmailPassword.ToolTip = "Hasło (weryfikacji dwuetapowej) do skrzynki pocztowej";
             // 
             // txtEmailLogin
             // 
@@ -530,6 +537,7 @@
             this.txtEmailLogin.Size = new System.Drawing.Size(271, 20);
             this.txtEmailLogin.StyleController = this.layoutControl1;
             this.txtEmailLogin.TabIndex = 5;
+            this.txtEmailLogin.ToolTip = "Adres email z którego wysłane zostaną wiadomości";
             // 
             // Root
             // 
