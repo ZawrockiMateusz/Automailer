@@ -34,7 +34,7 @@
             this.progressBar = new DevExpress.XtraEditors.ProgressBarControl();
             this.cmbClientEmail = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnZamknij = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSendEmails = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPrepareEmails = new DevExpress.XtraEditors.SimpleButton();
             this.grpAdvanced = new DevExpress.XtraEditors.GroupControl();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
             this.btnRemove = new DevExpress.XtraEditors.SimpleButton();
@@ -130,7 +130,7 @@
             this.layoutControl1.Controls.Add(this.progressBar);
             this.layoutControl1.Controls.Add(this.cmbClientEmail);
             this.layoutControl1.Controls.Add(this.btnZamknij);
-            this.layoutControl1.Controls.Add(this.btnSendEmails);
+            this.layoutControl1.Controls.Add(this.btnPrepareEmails);
             this.layoutControl1.Controls.Add(this.grpAdvanced);
             this.layoutControl1.Controls.Add(this.btnExcelPath);
             this.layoutControl1.Controls.Add(this.txtEmailPassword);
@@ -154,7 +154,7 @@
             // 
             // cmbClientEmail
             // 
-            this.cmbClientEmail.Location = new System.Drawing.Point(143, 84);
+            this.cmbClientEmail.Location = new System.Drawing.Point(154, 84);
             this.cmbClientEmail.Name = "cmbClientEmail";
             this.cmbClientEmail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -185,9 +185,10 @@
             "X",
             "Y",
             "Z"});
-            this.cmbClientEmail.Size = new System.Drawing.Size(282, 20);
+            this.cmbClientEmail.Size = new System.Drawing.Size(271, 20);
             this.cmbClientEmail.StyleController = this.layoutControl1;
             this.cmbClientEmail.TabIndex = 11;
+            this.cmbClientEmail.ToolTip = "Kolumna z Emailem Odbiorcy";
             // 
             // btnZamknij
             // 
@@ -197,17 +198,19 @@
             this.btnZamknij.StyleController = this.layoutControl1;
             this.btnZamknij.TabIndex = 10;
             this.btnZamknij.Text = "Zamknij";
+            this.btnZamknij.ToolTip = "Zamknij program";
             this.btnZamknij.Click += new System.EventHandler(this.btnZamknij_Click);
             // 
-            // btnSendEmails
+            // btnPrepareEmails
             // 
-            this.btnSendEmails.Location = new System.Drawing.Point(12, 411);
-            this.btnSendEmails.Name = "btnSendEmails";
-            this.btnSendEmails.Size = new System.Drawing.Size(288, 22);
-            this.btnSendEmails.StyleController = this.layoutControl1;
-            this.btnSendEmails.TabIndex = 9;
-            this.btnSendEmails.Text = "Wyślij wiadomości Email";
-            this.btnSendEmails.Click += new System.EventHandler(this.btnSendEmails_Click);
+            this.btnPrepareEmails.Location = new System.Drawing.Point(12, 411);
+            this.btnPrepareEmails.Name = "btnPrepareEmails";
+            this.btnPrepareEmails.Size = new System.Drawing.Size(288, 22);
+            this.btnPrepareEmails.StyleController = this.layoutControl1;
+            this.btnPrepareEmails.TabIndex = 9;
+            this.btnPrepareEmails.Text = "Przygotuj wiadomości Email";
+            this.btnPrepareEmails.ToolTip = "Otwórz ekran pozwalający na przygotowanie wiadomości Email";
+            this.btnPrepareEmails.Click += new System.EventHandler(this.btnPrepareEmails_Click);
             // 
             // grpAdvanced
             // 
@@ -244,6 +247,7 @@
             this.btnRemove.StyleController = this.layoutControl2;
             this.btnRemove.TabIndex = 11;
             this.btnRemove.Text = "-";
+            this.btnRemove.ToolTip = "Usuń parametr";
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
@@ -254,6 +258,7 @@
             this.btnAdd.StyleController = this.layoutControl2;
             this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "+";
+            this.btnAdd.ToolTip = "Dodaj parametr";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // txtSMTPClient
@@ -504,32 +509,35 @@
             // 
             // btnExcelPath
             // 
-            this.btnExcelPath.Location = new System.Drawing.Point(143, 12);
+            this.btnExcelPath.Location = new System.Drawing.Point(154, 12);
             this.btnExcelPath.Name = "btnExcelPath";
             this.btnExcelPath.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.btnExcelPath.Size = new System.Drawing.Size(282, 20);
+            this.btnExcelPath.Size = new System.Drawing.Size(271, 20);
             this.btnExcelPath.StyleController = this.layoutControl1;
             this.btnExcelPath.TabIndex = 7;
+            this.btnExcelPath.ToolTip = "Ścieżka fizyczna do pliku z listą Odbiorców";
             this.btnExcelPath.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.btnExcelPath_ButtonClick);
             this.btnExcelPath.TextChanged += new System.EventHandler(this.btnExcelPath_TextChanged);
             // 
             // txtEmailPassword
             // 
-            this.txtEmailPassword.Location = new System.Drawing.Point(143, 60);
+            this.txtEmailPassword.Location = new System.Drawing.Point(154, 60);
             this.txtEmailPassword.Name = "txtEmailPassword";
             this.txtEmailPassword.Properties.UseSystemPasswordChar = true;
-            this.txtEmailPassword.Size = new System.Drawing.Size(282, 20);
+            this.txtEmailPassword.Size = new System.Drawing.Size(271, 20);
             this.txtEmailPassword.StyleController = this.layoutControl1;
             this.txtEmailPassword.TabIndex = 6;
+            this.txtEmailPassword.ToolTip = "Hasło (weryfikacji dwuetapowej) do skrzynki pocztowej";
             // 
             // txtEmailLogin
             // 
-            this.txtEmailLogin.Location = new System.Drawing.Point(143, 36);
+            this.txtEmailLogin.Location = new System.Drawing.Point(154, 36);
             this.txtEmailLogin.Name = "txtEmailLogin";
-            this.txtEmailLogin.Size = new System.Drawing.Size(282, 20);
+            this.txtEmailLogin.Size = new System.Drawing.Size(271, 20);
             this.txtEmailLogin.StyleController = this.layoutControl1;
             this.txtEmailLogin.TabIndex = 5;
+            this.txtEmailLogin.ToolTip = "Adres email z którego wysłane zostaną wiadomości";
             // 
             // Root
             // 
@@ -555,7 +563,7 @@
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(417, 24);
             this.layoutControlItem2.Text = "Email - login:";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(128, 13);
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlItem3
             // 
@@ -564,7 +572,7 @@
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(417, 24);
             this.layoutControlItem3.Text = "Email - hasło:";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(128, 13);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlItem1
             // 
@@ -573,7 +581,7 @@
             this.layoutControlItem1.Name = "layoutControlItem1";
             this.layoutControlItem1.Size = new System.Drawing.Size(417, 24);
             this.layoutControlItem1.Text = "Ścieżka do Excela:";
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(128, 13);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlItem4
             // 
@@ -586,7 +594,7 @@
             // 
             // layoutControlItem7
             // 
-            this.layoutControlItem7.Control = this.btnSendEmails;
+            this.layoutControlItem7.Control = this.btnPrepareEmails;
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 399);
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(292, 26);
@@ -608,8 +616,8 @@
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 72);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Size = new System.Drawing.Size(417, 24);
-            this.layoutControlItem14.Text = "Kolumna z Emailem Klienta:";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(128, 13);
+            this.layoutControlItem14.Text = "Kolumna z Emailem Odbiorcy:";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(139, 13);
             // 
             // layoutControlItem17
             // 
@@ -749,7 +757,7 @@
         private DevExpress.XtraEditors.GroupControl grpAdvanced;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraEditors.SimpleButton btnZamknij;
-        private DevExpress.XtraEditors.SimpleButton btnSendEmails;
+        private DevExpress.XtraEditors.SimpleButton btnPrepareEmails;
         private DevExpress.XtraLayout.LayoutControl layoutControl2;
         private DevExpress.XtraEditors.CheckEdit chkEnableSSL;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;

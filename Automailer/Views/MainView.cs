@@ -1,5 +1,6 @@
 ﻿using Automailer.Controllers;
 using Automailer.Models;
+using DevExpress.XtraEditors;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using System;
@@ -80,7 +81,7 @@ namespace Automailer.Views
                     //remove last comma and white space
                     mess = mess.Remove(mess.Length - 2);
 
-                    MessageBox.Show(mess, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    XtraMessageBox.Show(mess, "Uwaga!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             };
         }
@@ -109,9 +110,14 @@ namespace Automailer.Views
                 (config, configFilePath);
         }
 
-        private void btnSendEmails_Click(object sender, EventArgs e)
+        private void btnPrepareEmails_Click(object sender, EventArgs e)
         {
-            PrepareEmailView prepareEmailView = new PrepareEmailView(config);
+            string excelPath = btnExcelPath.Text;
+            bool skipHeader = chkSkipHeader.Checked;
+            string emailColumn = cmbClientEmail.Text;
+
+            PrepareEmailView prepareEmailView = new PrepareEmailView
+                (config, ExcelImportController.downloadRecipients(excelPath, skipHeader, emailColumn));
             if (prepareEmailView.ShowDialog() == DialogResult.OK)
             {
                 KeyValuePair<string, string> keyValuePair = 
@@ -154,7 +160,7 @@ namespace Automailer.Views
 
             SmtpClient client = new SmtpClient(txtSMTPClient.Text)
             {
-                Port = 587,
+                Port = config.SMTP_Port,
                 Credentials = new NetworkCredential(email, password),
                 EnableSsl = chkEnableSSL.Checked,
             };
@@ -168,6 +174,10 @@ namespace Automailer.Views
 
                 for (int row = startRowIndex; row <= worksheet.Dimension.End.Row; row++)
                 {
+                    string from = txtEmailLogin.Text;
+                    string to = worksheet.Cells[cmbClientEmail.Text + row.ToString()].Value?.ToString() ?? String.Empty;
+                    if (String.IsNullOrEmpty(to)) continue;
+
                     string localBody = emailContent.Body;
                     string localTitle = emailContent.Title;
                     List<Attachment> attachments = new List<Attachment>();
@@ -193,8 +203,6 @@ namespace Automailer.Views
                         });
                     }
 
-                    string from = txtEmailLogin.Text;
-                    string to = worksheet.Cells[cmbClientEmail.Text + row.ToString()].Value?.ToString() ?? String.Empty;
                     try
                     {
                         MailMessageController.SendMailMessage(
@@ -222,11 +230,11 @@ namespace Automailer.Views
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Wiadomości zostały wysłane do adresatów.",
+            XtraMessageBox.Show("Wiadomości zostały wysłane do adresatów.",
                     "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (invalidEmails != null && invalidEmails.Count > 0)
             {
-                MessageBox.Show($"Nie udało się wysłać następującej liczby wiadomości: {invalidEmails.Count}.",
+                XtraMessageBox.Show($"Nie udało się wysłać następującej liczby wiadomości: {invalidEmails.Count}.",
                     "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             progressBar.EditValue = 0;

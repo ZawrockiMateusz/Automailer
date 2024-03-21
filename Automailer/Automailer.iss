@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Automailer"
-#define MyAppVersion "1.12"
+#define MyAppVersion "1.13"
 #define MyAppPublisher "Mateusz Zawrocki"
 #define MyAppExeName "Automailer.exe"
 
